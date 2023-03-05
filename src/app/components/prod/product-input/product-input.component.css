@@ -1,0 +1,9 @@
+.grid {
+    display: grid;
+    margin: 3rem;
+}
+
+.container {
+   margin-top: 3%;
+   margin-left: 35%;
+}

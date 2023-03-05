@@ -1,0 +1,29 @@
+<mat-toolbar color="warn">
+    <button mat-button class="navButtons" (click)="showShop()"
+        *ngIf="getCurrPage() != 'shop' && !isAdminOrShopKeeper()">Back To Shop</button>
+    <div *ngIf="showAdminText()">Admin View</div>
+    <div *ngIf="showShopKeeperText()">Shop-Keeper View</div>
+    <span class="spacer"></span>
+    <p></p>
+    <span class="spacer"></span>
+    <div>
+        <button mat-button class="navButtons" [mat-menu-trigger-for]="sortMenu" *ngIf="showYourAccountButton()">Your
+            Account</button>
+        <mat-menu #sortMenu>
+            <button mat-menu-item (click)="showOrderHistory()" *ngIf="showOrderHistoryButton()">Order History</button>
+            <button mat-menu-item (click)="showAccount()" *ngIf="showAccountButton()">Edit Account</button>
+            <button mat-menu-item (click)="logout()">Logout</button>
+        </mat-menu>
+        <button mat-button class="navButtons" (click)="showLogin()" *ngIf="showLoginButton()">Sign in</button>
+        <button mat-button class="navButtons" (click)="showRegister()" *ngIf="showRegButton()">Register</button>
+        <button mat-button class="navButtons" (click)="showAdmin()" *ngIf="showAdminButton()">Admin Tasks</button>
+        <button mat-button class="navButtons" (click)="showShopKeep()" *ngIf="showShopKeepButton()">Manage Shop</button>
+        <button mat-button (click)="logout()" *ngIf="isAdminOrShopKeeper()">Logout</button>
+    </div>
+    <div>
+        <button mat-button class="bttnCart" (click)="showCart()" *ngIf="showCartButton()" matBadge="{{itemsInCart}}"
+            matBadgePosition="before" matBadgeColor="accent">
+            <mat-icon>shopping_cart</mat-icon>View Cart
+        </button>
+    </div>
+</mat-toolbar>

@@ -1,0 +1,10 @@
+#productsContainer {
+    display: flex;
+    flex-wrap:wrap;
+    border-radius: 5px;
+    padding:40px;
+    overflow: hidden;
+    overflow-y: scroll;
+    justify-content: center;
+    user-select: none;
+}

@@ -1,0 +1,13 @@
+<h1>Admin User Manage Tool</h1>
+    <div >
+        <label>Users: {{users.length}}</label>
+        <div id="userContainer">
+        <div *ngFor="let user of users"  class="userElement">
+            <label>User: {{user}}</label>
+           <div>
+            <button>Delete</button>
+            <button>Edit</button>
+           </div>
+        </div>
+    </div>
+    </div>

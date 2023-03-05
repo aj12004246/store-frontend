@@ -1,0 +1,26 @@
+<ng-template [ngIf]="cart.oldCarts.length == 0">
+  <div>
+    <h2>There Are No Previous Orders</h2>
+  </div>
+</ng-template>
+
+<div *ngFor="let cart of cart.oldCarts">
+  <mat-card>
+    <mat-card-subtitle><b>Order #{{cart.id}}</b></mat-card-subtitle>
+    <mat-divider></mat-divider>
+    <mat-card-content *ngFor="let item of cart.items">
+      <div class="item">
+        {{item.quantity}} × {{item.productName}}
+      </div>
+      <div class="price">
+        <p>Price: ${{item.total}}</p>
+      </div>
+    </mat-card-content>
+    <mat-divider></mat-divider>
+    <mat-card-footer>
+      <p *ngIf="cart.couponCode != ''">{{getCoupon(cart.couponCode)}}</p>
+      <p><b>Total: {{cart.total | currency}}</b></p>
+    </mat-card-footer>
+  </mat-card>
+
+</div>

@@ -1,0 +1,53 @@
+<form  (ngSubmit)="onSubmit()">
+  <div class="container">
+    <h3>{{addOrUpdateText}} Sale</h3>
+
+    <!-- Select Product -->
+    <mat-form-field appearance="fill" class="txtSize">
+        <mat-label>Product</mat-label>
+        <mat-select [(ngModel)]="selectedProduct" (selectionChange)="updateSalePrice()" name="products">
+          <mat-option *ngFor="let product of products" [value]="product">
+            {{product.productName}}
+          </mat-option>
+        </mat-select>
+    </mat-form-field>
+  
+    <!--Current Price -->
+    <div *ngIf="selectedProduct">Current Price: {{selectedProduct.price | currency}}</div><br>
+        
+    <!-- IsPercentage -->
+    <mat-radio-group aria-label="Type of salePrice" [(ngModel)]="isPercentage" name="isPercentage">
+        <mat-radio-button [value]="false">Change Price</mat-radio-button>
+        <mat-radio-button [value]="true">Percent off</mat-radio-button>
+    </mat-radio-group><br>
+    
+    <!--Sale Price -->
+   
+    <mat-form-field *ngIf="!isPercentage" class="txtSize">
+        <mat-label>Sale Price</mat-label>
+        <input matInput [(ngModel)]="sale.salePrice" name="price" placeholder="salePrice" type="number">
+    </mat-form-field><br>
+    
+    <!-- Percentage Off -->
+    <mat-form-field *ngIf="isPercentage" class="txtSize">
+        <mat-label>Sale Percentage</mat-label>
+        <input matInput [(ngModel)]="sale.percentageOff" (change)="updateSalePrice()" name="percentageOff" placeholder="Percent off" type="number">
+        <mat-hint>Use integer 1 - 100</mat-hint>
+    </mat-form-field><br>
+
+    <!-- Sale Dates -->
+    <mat-form-field appearance="fill" class="txtSize">
+        <mat-label>Effective Dates</mat-label>
+        <mat-date-range-input [rangePicker]="effectiveDatesPicker" [min]="minDate">
+          <input matStartDate placeholder="Start date" [(ngModel)]="sale.startDate" name="startDate">
+          <input matEndDate placeholder="End date" [(ngModel)]="sale.endDate" name="endDate">
+        </mat-date-range-input>
+        <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="effectiveDatesPicker"></mat-datepicker-toggle>
+        <mat-date-range-picker #effectiveDatesPicker></mat-date-range-picker>
+    </mat-form-field><br><br>
+  
+    <button mat-raised-button color="primary" type="submit" class="btnStyle">{{addOrUpdateText}}</button>
+    <button mat-raised-button color="accent" type="button" (click)="onClickCancel()">Cancel</button>
+  </div>
+</form>

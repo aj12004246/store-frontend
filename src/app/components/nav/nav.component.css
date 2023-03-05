@@ -1,0 +1,12 @@
+.spacer {
+    flex: 2 1;
+  }
+.navButtons{
+    margin: 15px;
+}
+.bttnCart{
+    margin-left: 15px;
+}
+.mat-toolbar{
+    background-color: #434F67;
+}

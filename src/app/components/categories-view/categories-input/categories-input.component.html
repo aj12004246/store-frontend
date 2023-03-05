@@ -1,0 +1,15 @@
+<form  (ngSubmit)="onSubmit()">
+    <div class="container">
+      <h3>{{addOrUpdateText}} Category</h3>
+  
+      <!-- Create Coupon Name -->
+      <mat-form-field class="txtSize">
+        <mat-label>Category</mat-label>
+        <input matInput [(ngModel)]="category.categoryName" name="category" placeholder="Category">
+    </mat-form-field><br>
+   
+      <button mat-raised-button color="primary" type="submit" class="btnStyle">{{addOrUpdateText}}</button>
+      <button mat-raised-button color="accent" type="button" (click)="onClickCancel()">Cancel</button>
+    </div>
+  </form>
+  

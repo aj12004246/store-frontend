@@ -1,0 +1,44 @@
+
+<ng-template [ngIf]="myCart.items.length == 0">
+<div><h2>There Are No Items In Your Cart</h2></div>
+</ng-template>
+<div *ngFor="let item of myCart.items"> 
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title><b>{{item.productName}}</b></mat-card-title>
+            <mat-card-subtitle class="price">${{item.total}}</mat-card-subtitle>
+        </mat-card-header>
+    <mat-card-content>
+        Quantity: {{item.quantity}}
+        <br>
+        <mat-form-field style="width: 70px">
+            <input matInput type="number" [(ngModel)]="item.quantity" min="1" max="999">
+        </mat-form-field>
+        <br>
+        <div class="button-row">
+            <button class="buttn" mat-flat-button color="primary" (click)="cart.quantity(register.getaccId(), item.productId, item.quantity)">Update Qty</button>
+            <button class="buttn" mat-flat-button color="warn" (click)="cart.deleteFromCart(item.productId, register.getaccId())">Delete</button>
+        </div>
+    </mat-card-content>
+    </mat-card>
+    <mat-divider></mat-divider>
+</div>
+<ng-template [ngIf]="myCart.items.length > 0">
+
+<div class="margin">Order Total</div>
+<h2 class="total"><b>{{myCart.total | currency}}</b></h2>
+
+<div >
+    <mat-form-field>
+        <input matInput placeholder="Enter coupon code" [(ngModel)]="couponCode">
+    </mat-form-field>
+    <button class="coup" mat-flat-button color="primary" (click)="cart.applyCouponCode(register.getaccId(), couponCode)">Apply Coupon</button>
+
+</div>
+
+
+ <div class="button-row">
+    <button class="buttn" mat-flat-button color="primary" (click)="cart.checkout(register.getaccId())">Checkout</button>
+ </div>
+
+</ng-template>

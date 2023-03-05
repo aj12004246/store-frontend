@@ -1,0 +1,9 @@
+<mat-form-field appearance="fill">
+    <mat-label>Search By</mat-label>
+    <mat-select>
+      
+      <mat-option *ngFor="let searchElement of searchByArr" [value] = "searchElement">
+        {{searchElement}}
+    </mat-option>
+    </mat-select>
+  </mat-form-field>

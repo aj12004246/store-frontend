@@ -1,0 +1,59 @@
+<form  (ngSubmit)="onSubmit()">
+    <div class="container">
+      <h3>{{addOrUpdateText}} Coupon</h3>
+  
+      <!-- Create Coupon Name -->
+      <mat-form-field class="txtSize">
+        <mat-label>Coupon Code Name</mat-label>
+        <input matInput [(ngModel)]="coupon.code" name="code" placeholder="Special Code">
+    </mat-form-field><br>
+
+      <!-- Set Use Limit-->
+    <mat-form-field class="txtSize">
+        <mat-label>Set Use Limit</mat-label>
+         <input matInput [(ngModel)]="coupon.useLimit" name="useLimit" placeholder="Number of uses before invalid" type="number">
+    </mat-form-field><br>
+
+    
+      <!--Current Price -->
+      <div *ngIf="selectedCoupon">Current Price: {{selectedCoupon.amountOff | currency}}</div><br>
+          
+      <!-- IsPercentage -->
+      <mat-radio-group aria-label="Type of couponPrice" [(ngModel)]="isPercentage" name="isPercentage">
+          <mat-radio-button [value]="false">Change Price</mat-radio-button>
+          <mat-radio-button [value]="true">Percent off</mat-radio-button>
+      </mat-radio-group><br>
+      
+      <!--Sale Price -->
+     
+      <mat-form-field *ngIf="!isPercentage" class="txtSize">
+          <mat-label>Amount Off</mat-label>
+          <input matInput [(ngModel)]="coupon.amountOff" name="amountOff" placeholder="Amount Off" type="currency">
+          <span matTextPrefix>$&nbsp;</span>
+      </mat-form-field><br>
+      
+      <!-- Percentage Off -->
+      <mat-form-field *ngIf="isPercentage" class="txtSize">
+          <mat-label>Sale Percentage</mat-label>
+          <input matInput [(ngModel)]="coupon.percentageOff"  name="percentageOff" placeholder="Percent off" type="number">
+          <span matTextPrefix>%&nbsp;</span>
+          <mat-hint>Use integer 1 - 100</mat-hint>
+      </mat-form-field><br>
+  
+      <!-- Sale Dates -->
+      <mat-form-field appearance="fill" class="txtSize">
+          <mat-label>Effective Dates</mat-label>
+          <mat-date-range-input [rangePicker]="effectiveDatesPicker" [min]="minDate">
+            <input matStartDate placeholder="Start date" [(ngModel)]="coupon.startDate" name="startDate">
+            <input matEndDate placeholder="End date" [(ngModel)]="coupon.endDate" name="endDate">
+          </mat-date-range-input>
+          <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="effectiveDatesPicker"></mat-datepicker-toggle>
+          <mat-date-range-picker #effectiveDatesPicker></mat-date-range-picker>
+      </mat-form-field><br><br>
+    
+      <button mat-raised-button color="primary" type="submit" class="btnStyle">{{addOrUpdateText}}</button>
+      <button mat-raised-button color="accent" type="button" (click)="onClickCancel()">Cancel</button>
+    </div>
+  </form>
+  

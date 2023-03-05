@@ -1,0 +1,22 @@
+<mat-card  class="shopItemCard">
+  <mat-card-title class="prodCardEl productName">{{product.displayName}}</mat-card-title>
+  <mat-card-subtitle class="prodCardEl"><b>Categories:</b> {{product.categories}}</mat-card-subtitle>
+  <img class="productImg" mat-card-lg-image src={{product.img}} alt={{product.displayName}}>
+
+  <mat-card-content class="prodCardInfo">
+    <span class="prodCardEl"><b>Description</b> <div class="productDescrp">{{product.description}}</div></span>
+    <span class="prodCardEl"><b>Price:</b> {{product.price | currency}}</span>
+    <span *ngIf="product.onSale" class="prodCardEl"><b style="color:red;">Sale Price:</b> {{product.salePrice | currency}}</span>
+    <span class="prodCardEl"><b>Stock:</b> {{product.numInStock}}</span>
+    <span *ngIf="product.discontinued" class="prodCardEl">Discontinued</span>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button *ngIf="role === 'Customer' || role === ''" class="productAddBtn" mat-button (click)="onClickAdd()">Add to cart</button>
+
+    <div *ngIf="role === 'ShopKeeper'">
+      <button  class="productAddBtn" mat-button (click)="onClickEdit()">Edit</button>
+      <button class="productAddBtn" mat-button (click)="onClickDelete()">Delete</button>
+    </div>
+  </mat-card-actions>
+</mat-card>

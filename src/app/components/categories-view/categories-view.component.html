@@ -1,0 +1,38 @@
+<app-categories-input *ngIf="showCategoryForm"></app-categories-input>
+
+<div *ngIf="!showCategoryForm" class="m3">
+    <button mat-mini-fab color="primary" (click)="onClickAdd()" class="mb-2">
+        <mat-icon>add</mat-icon>
+    </button>
+
+    <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)"
+       class="mat-elevation-z8">
+
+    <!-- Category Code Column -->
+    <ng-container matColumnDef="categoryName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by categoryName">
+        Category Name
+      </th>
+      <td mat-cell *matCellDef="let element"> {{ element.categoryName }} </td>
+    </ng-container>
+
+    
+
+
+    <!-- Action Column -->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell  *matHeaderCellDef> Actions </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-icon-button (click)="onClickEdit(element)">
+            <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button (click)="onClickDelete(element.id)">
+            <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>

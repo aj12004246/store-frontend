@@ -1,0 +1,16 @@
+<div id="shopContainer">
+    <div id="shopSearchContainer">   
+        <div id="search">
+            <b for="Search">Search</b>
+            <input matInput placeholder="Ex. Pineapple"  [(ngModel)]="shopTextSearch" id="searchBar" label="Search" type="text" (input)="filterSearch()">
+        </div>
+    </div>
+
+    
+    <div  id="productsContainer">
+        <app-product-list-item *ngFor="let product of filteredProducts" [product]="product"></app-product-list-item>
+        <div *ngIf="filteredProducts.length < 1">
+            <label>No Products Found</label>
+        </div>
+    </div>
+</div>

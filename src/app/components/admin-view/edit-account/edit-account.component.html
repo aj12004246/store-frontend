@@ -1,0 +1,48 @@
+<div class="editAccount">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Update {{account.email}}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <div>
+                <button mat-button (click)="toggleAndReset(0)">
+                    <mat-icon>edit</mat-icon> Edit Email
+                </button>
+                <mat-form-field appearance="fill" class="space" *ngIf="edit[0]">
+                    <mat-label>New Email</mat-label>
+                    <input matInput type="email" [(ngModel)]="newEmail" [email]="validate" [required]="validate" #email="ngModel" (ngModelChange)="validEmail = email.valid">
+                </mat-form-field>
+            </div>
+            <div>
+                <button mat-button (click)="toggleAndReset(1)">
+                    <mat-icon>edit</mat-icon> Edit Password
+                </button>
+                <mat-form-field appearance="fill" class="space" *ngIf="edit[1]">
+                    <mat-label>New Password</mat-label>
+                    <input matInput type="password" [(ngModel)]="newPassword" [required]="validate" #password="ngModel" (ngModelChange)="validPassword = password.valid">
+                </mat-form-field>
+            </div>
+            <div>
+                <button mat-button (click)="toggleAndReset(2)" *ngIf="roleDisabled === false">
+                    <mat-icon>edit</mat-icon> Edit Role
+                </button>
+                <mat-form-field appearance="fill" class="space" *ngIf="edit[2]">
+                    <mat-label>New Role</mat-label>
+                    <mat-select *ngIf="roleDisabled === false">
+                        <mat-option value="Admin" (click)="newRole='Admin'">Admin</mat-option>
+                        <mat-option value="ShopKeeper" (click)="newRole='ShopKeeper'">Shop Keeper</mat-option>
+                        <mat-option value="Customer" (click)="newRole='Customer'">Customer</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-button [disabled]="buttonControl()" (click)="submit()">
+                <mat-label>Apply</mat-label>
+            </button>
+            <button mat-button (click)="reset()">
+                <mat-label>Cancel</mat-label>
+            </button>
+        </mat-card-actions>
+    </mat-card>
+</div>

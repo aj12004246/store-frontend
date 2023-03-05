@@ -1,0 +1,20 @@
+<!-- <div class="register">
+  <button mat-raised-button color="primary"
+    (click)="ui.$showRegister.next(true); ui.$showLogin.next(false)">Register</button>
+</div> -->
+<div class="container align=center">
+  <mat-form-field appearance="fill">
+    <mat-label>Email</mat-label>
+    <input type="email" matInput [formControl]="emailFormControl" [(ngModel)]="email" placeholder="Ex. pat@example.com">
+    <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+      Please enter a valid email address
+    </mat-error>
+  </mat-form-field><br>
+  <mat-form-field appearance="fill">
+    <mat-label>Password*</mat-label>
+    <input matInput type="password" [(ngModel)]="password">
+  </mat-form-field><br>
+  <button mat-raised-button color="primary" style="margin-right: 10px;margin-left: 50px;"
+    (click)="ui.ValidateLogin(email,password)">Submit
+  </button>
+</div>

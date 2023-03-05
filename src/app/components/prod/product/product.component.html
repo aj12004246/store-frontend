@@ -1,0 +1,22 @@
+<!-- Expanded Product View -->
+<mat-card>
+    <mat-card-header>
+      <mat-card-title-group>
+        <mat-card-title>{{product.displayName}}</mat-card-title>
+        <mat-card-subtitle>{{product.description}}</mat-card-subtitle>
+        <img mat-card-md-image src={{product.img}}>
+      </mat-card-title-group>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="flex-between p1">
+        <div>Stock: {{product.numInStock}}</div>
+        <div>Available on: {{product.availableOn | date}}</div>
+        <div>{{product.price | currency}}</div>
+      </div>  
+      <div class="flex-end">
+        <button class="my-1" mat-raised-button color="primary">Add to cart</button>
+        <button class="my-1" mat-raised-button color="accent" (click)="onClickEdit()">Edit</button>
+        <button class="my-1" mat-raised-button color="warn" (click)="onClickDelete()">Delete</button>
+      </div>
+    </mat-card-content>
+  </mat-card>

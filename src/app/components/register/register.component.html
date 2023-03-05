@@ -1,0 +1,30 @@
+<!-- <div class="login">
+  <button mat-raised-button color="primary" (click)="ui.$showLogin.next(true); ui.$showRegister.next(false)" >Login</button>
+</div> -->
+<div class="container align=center">
+    <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+       <!--- <input matInput [(ngModel)]="email" type="email" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$" email="true">
+        <div *ngIf="email.errors.email">Email must be a valid email address</div>-->
+       <input type="email" matInput [formControl]="emailFormControl" [(ngModel)]="email" placeholder="Ex. pat@example.com">
+       <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+         Please enter a valid email address
+       </mat-error>
+      </mat-form-field><br>
+    <mat-form-field appearance="fill">
+        <mat-label>Password*</mat-label>
+        <input matInput type="password" [(ngModel)]="password">
+    </mat-form-field><br>
+    <mat-form-field appearance="fill">
+        <mat-label>Choose Role*</mat-label>
+        <mat-select class="txtinput" [(ngModel)]="accounttype">
+          <mat-option value="Admin">Admin</mat-option>
+          <mat-option value="ShopKeeper">Shop Keeper</mat-option>
+          <mat-option value="Customer">Customer</mat-option>
+        </mat-select>
+      </mat-form-field><br>
+     
+      
+      <button mat-raised-button color="primary" style="margin-right: 10px;margin-left: 50px;" (click)="ui.ValidateRegister(email,password,accounttype)">Submit</button>
+      <!--<button mat-raised-button color="primary" (click)="ui.startLogin()">Login</button>-->
+    </div>

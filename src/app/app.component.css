@@ -1,0 +1,9 @@
+body {
+    margin: none;
+    height: 100%;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+#sideSpace{
+    margin-left: 10%;
+    margin-right: 10%;
+}

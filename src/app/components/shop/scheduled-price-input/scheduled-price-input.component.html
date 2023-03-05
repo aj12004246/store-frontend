@@ -1,0 +1,54 @@
+<form  (ngSubmit)="onSubmit()">
+  <div class="container">
+    <h3>{{addOrUpdateText}} Scheduled Price</h3>
+
+    <!-- Select Product -->
+    <mat-form-field appearance="fill">
+      <mat-label>Product</mat-label>
+      <mat-select [(ngModel)]="selectedProduct" name="products">
+        <mat-option *ngFor="let product of products" [value]="product">
+          {{product.productName}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field><br>
+
+    <!--Current Price -->
+    <div *ngIf="selectedProduct">
+      <div *ngIf="!scheduledPrice.isMap">Current Price: {{selectedProduct.price | currency}}</div>
+      <div *ngIf="scheduledPrice.isMap">Current MAP: {{selectedProduct.map | currency}}</div>
+    </div><br>
+    
+
+    <!-- Select Type (isMap) -->
+    <mat-form-field appearance="fill">
+      <mat-label>Type</mat-label>
+      <mat-select [(ngModel)]="scheduledPrice.isMap" name="isMap">
+        <mat-option  [value]="true">MAP</mat-option>
+        <mat-option [value]="false">Price</mat-option>
+      </mat-select>
+    </mat-form-field><br>
+
+    <!-- Price Change-->
+    <mat-form-field>
+        <mat-label>Price Change</mat-label>
+        <input matInput [(ngModel)]="scheduledPrice.price" name="price" placeholder="Product name" type="number">
+    </mat-form-field><br>
+
+    <!-- Price Change Date -->
+    <mat-form-field appearance="fill"  class="txtSize">
+        <mat-label>Effective On</mat-label>
+        <input matInput [matDatepicker]="priceChangeDatepicker" [(ngModel)]="scheduledPrice.startDate" [min]="minDate" name="startDate">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="priceChangeDatepicker"></mat-datepicker-toggle>
+        <mat-datepicker #priceChangeDatepicker>
+          <mat-datepicker-actions>
+            <button mat-button matDatepickerCancel>Cancel</button>
+            <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+          </mat-datepicker-actions>
+        </mat-datepicker>
+      </mat-form-field><br><br>
+  
+    <button mat-raised-button color="primary" type="submit" class="btnStyle">{{addOrUpdateText}}</button>
+    <button mat-raised-button color="accent" type="button" (click)="onClickCancel()">Cancel</button>
+  </div>
+</form>

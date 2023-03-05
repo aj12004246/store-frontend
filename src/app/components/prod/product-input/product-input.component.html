@@ -1,0 +1,83 @@
+<form  (ngSubmit)="onSubmit()">
+    <div class="container">
+    <h3>{{createOrUpdateText}} Product</h3>
+    <!-- Product name -->
+    <mat-form-field  appearance="fill">
+        <mat-label>Product name</mat-label>
+        <input matInput [(ngModel)]="product.productName" name="productName" placeholder="Product name"   required>
+    </mat-form-field><span style="margin-left: 10px;"></span>
+   
+    <!-- Display name -->
+    <mat-form-field  appearance="fill">
+        <mat-label>Display name</mat-label>
+        <input matInput [(ngModel)]="product.displayName" name="displayName" placeholder="Display name" required>
+    </mat-form-field><br>
+
+    <!-- img -->
+    <mat-form-field  appearance="fill">
+        <mat-label>Image URL</mat-label>
+        <input matInput [(ngModel)]="product.img" name="img" placeholder="Image URL" required>
+    </mat-form-field><span style="margin-left: 10px;"></span>
+
+    <!-- price -->
+    <mat-form-field  appearance="fill">
+        <mat-label>Price</mat-label>
+        <input matInput [(ngModel)]="product.price" name="price" placeholder="Price" type="number" required>
+    </mat-form-field><br>
+    
+    <!-- map -->
+    <mat-form-field  appearance="fill">
+        <mat-label>MAP</mat-label>
+        <input matInput [(ngModel)]="product.map" name="map" placeholder="MAP" type="number" required>
+    </mat-form-field><span style="margin-left: 10px;"></span>
+
+    <!-- quanityAtCost -->
+    <mat-form-field  appearance="fill">
+        <mat-label>Qty at Cost</mat-label>
+        <input matInput [(ngModel)]="product.quantityAtCost" name="quanityAtCost" placeholder="Available stock" type="number" required>
+    </mat-form-field><br>
+    <!-- availableOn -->
+    <mat-form-field appearance="fill"   style="width:210px;">
+        <mat-label>Date Available</mat-label>
+        <input matInput [(ngModel)]="product.availableOn" name="availableOn" [matDatepicker]="picker" [min]="minDate" required>
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field><span style="margin-left: 10px;"></span>
+
+    <!-- numInStock -->
+    <mat-form-field  appearance="fill">
+        <mat-label>Stock</mat-label>
+        <input matInput [(ngModel)]="product.numInStock" name="numInStock" placeholder="Available stock" type="number" required>
+    </mat-form-field><br><br>
+
+    
+    <!-- description -->
+    <mat-form-field  appearance="fill" style="width:433px;">
+        <mat-label>Description</mat-label>
+        <textarea matInput [(ngModel)]="product.description" name="description" placeholder="Description"  required>
+       </textarea>
+    </mat-form-field><span style="margin-left: 10px;"></span>
+    
+
+    <!-- discontinued -->
+   <section class="example-section">
+        <mat-checkbox [(ngModel)]="product.discontinued" name="discontinued">Discontinued</mat-checkbox>
+    </section><br>
+
+    <!-- categories -->
+    <!-- Todo fix post issue with categories
+    <mat-form-field appearance="fill">
+        <mat-label>Categories</mat-label>
+        <mat-select [(ngModel)]="product.categories" name="categories" multiple>
+          <mat-option *ngFor="let cat of categories" [value]="cat">{{cat.categoryName}}</mat-option>
+        </mat-select>
+    </mat-form-field> -->
+    
+    <!-- sales -->
+
+    
+    <button mat-raised-button color="primary" type="submit" style="margin-right: 10px;margin-left: 150px;">{{createOrUpdateText}}</button>
+    <button mat-raised-button color="accent" type="button" (click)="onClickCancel()">Cancel</button>
+</div>
+</form>

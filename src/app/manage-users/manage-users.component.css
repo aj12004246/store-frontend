@@ -1,0 +1,20 @@
+.userElement{
+   border-radius:5%;
+   border: 2px solid rgb(136, 137, 139);
+   width: 150px;
+   margin: 9px;
+   padding: 5px;
+}
+button{
+    margin: 2px;
+}
+#userContainer{
+    display:Flex;
+   flex-wrap: wrap;
+   border-radius: 1px;
+   border: 2px solid rgb(136, 137, 139);
+   width: 450px;
+   height: 300px;
+   overflow:hidden;
+   overflow-y: scroll;
+}
